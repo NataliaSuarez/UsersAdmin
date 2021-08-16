@@ -24,7 +24,7 @@ Router::get('/users', function (Request $req, Response $res) {
 });
 
 Router::get('/users/new', function (Request $req, Response $res) {
-  (new Users())->newForm($req, $res);
+  (new Users())->new($req, $res);
 });
 
 Router::post('/users/new', function (Request $req, Response $res) {

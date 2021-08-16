@@ -15,62 +15,120 @@ class Users
 
         foreach ($users as $user) {
             $renderUsers = $renderUsers . <<<HTML
-                <div style='background:#333;color:yellowgreen;font-size:16px;padding: 18px; margin-bottom: 10px'>
-                    <span>{$user['user_id']}<span>
-                    <span>{$user['first_name']}<span>
-                    <span>{$user['last_name']}<span>
-                    <span>{$user['mail']}<span>
-                </div>
+                <tr class="table-row-item">
+                    <td>{$user['user_id']}</td>
+                    <td>{$user['first_name']}</td>
+                    <td>{$user['last_name']}</td>
+                    <td>{$user['mail']}</td>
+                </tr>
             HTML;
         }
-        echo <<<HTML
-            <html>
-            <body style='min-height:90vh;background:#fafafa;display:flex;align-items:center;justify-content:center;flex-direction:column;'>
-                <link rel='preconnect' href='https://fonts.googleapis.com'>
-                <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-                <link href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap' rel='stylesheet'>
-                <div style='font-family:Atkinson Hyperlegible,sans-serif;'>
-                    <span style='color:#333;font-size:50px;margin: 18px;'>
-                    Users
-                    </span>
-                    <div>{$renderUsers}</div>
-                <div>
-            </body>
-            </html>
-        HTML;
-    }
 
-    public function newForm()
-    {
-        echo '
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
-        <div style="min-height:100vh;background:#fafafa;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:Atkinson Hyperlegible,sans-serif;">
-            <span style="color:#333;font-size:50px;margin: 18px;">Create new user</span>
-            <form action="new" method="post">
-                <label for="firstname">First name:</label>
-                <input type="text" id="firstname" name="firstname"><br><br>
-                <label for="lastname">Last name:</label>
-                <input type="text" id="lastname" name="lastname"><br><br>
-                <label for="mail">Mail:</label>
-                <input type="text" id="mail" name="mail"><br><br>
-                <input type="submit" value="Submit">
-            </form>
-        <div>';
+        echo <<<HTML
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <div class="section">
+            <span class="dark-title">Users Admin</span>
+            <div class="content">
+                <a class="link" href="users">Users</a>
+                <a class="link" href="users/new">Create User</a>
+                <a class="link" href="#">Update User</a>
+                <a class="link" href="#">Remove User</a>
+            </div>
+            <div class="list-content">
+                <div class="form-card" style="width:90%; height: 70vh">
+                    <span class="title">
+                        Users
+                    </span>
+                    <table class="table-list">
+                        <tr class="table-header">
+                            <th># ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>@</th>
+                        </tr>                       
+                        {$renderUsers}
+                    </table>
+                </div>
+            </div>
+        <div>
+        HTML;
     }
 
     public function new(Request $req, Response $res)
     {
         $userDataForm = $req->getBody();
-        $user = UsersRepository::add($userDataForm['firstname'], $userDataForm['lastname'], $userDataForm['mail']);
+        $renderAlert = '';
+        if (!empty($userDataForm)) {
+            $user = UsersRepository::add($userDataForm['firstname'], $userDataForm['lastname'], $userDataForm['mail']);
+            $renderAlert = <<<HTML
+                <span class="success-notification">{$user['first_name']} has already created with id {$user['user_id']}!<span>
+                <!-- <button class="notification-button">x</button> -->
+            HTML;
+        }
 
-        echo '
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
-        <div style="min-height:100vh;background:#fafafa;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:Atkinson Hyperlegible,sans-serif;">
-            <span style="color:#333;font-size:50px;margin: 18px;">creating</span>
-        <div>';
+        echo <<<HTML
+        <link rel="stylesheet" type="text/css" href="../index.css">
+        <div class="section">
+            <span class="dark-title">Users Admin</span>
+            <div class="content">
+                <a class="link" href="/users">Users</a>
+                <a class="link" href="/users/new">Create User</a>
+                <a class="link" href="#">Update User</a>
+                <a class="link" href="#">Remove User</a>
+            </div>
+            <div>
+                {$renderAlert}
+            </div>
+            <div class="form-card">
+                <span class="title">Create new user</span>
+                <div class="form-content">
+                    <form action="new" method="post" class="form">
+                        <div class="text-field" style="margin-top:6px">
+                            <label for="firstname">First name</label>
+                            <input type="text" id="firstname" name="firstname">
+                        </div>
+                        <div class="text-field">
+                            <label for="lastname">Last name</label>
+                            <input type="text" id="lastname" name="lastname">
+                        </div>
+                        <div class="text-field">
+                            <label for="mail">Mail</label>
+                            <input type="email" id="mail" name="mail">
+                        </div>
+                        <input type="submit" value="Add" class="submit-button">
+                    </form>
+                </div>
+            </div>
+        <div>
+        HTML;
+
+        // echo <<<HTML
+        // <link rel="stylesheet" type="text/css" href="../index.css">
+        // <div class="dark-section">
+        // <div>
+        //     {$renderAlert}
+        // </div>
+        // <div class="form-card">
+        //     <span class="title">Create new user</span>
+        //     <div class="form-content">
+        //         <form action="new" method="post" class="form">
+        //             <div class="text-field">
+        //                 <label for="firstname">First name</label>
+        //                 <input type="text" id="firstname" name="firstname">
+        //             </div>
+        //             <div class="text-field">
+        //                 <label for="lastname">Last name</label>
+        //                 <input type="text" id="lastname" name="lastname">
+        //             </div>
+        //             <div class="text-field">
+        //                 <label for="mail">Mail</label>
+        //                 <input type="email" id="mail" name="mail">
+        //             </div>
+        //             <input type="submit" value="Add" class="submit-button">
+        //         </form>
+        //     </div>
+        // </div>
+        // <div>
+        // HTML;
     }
 }
