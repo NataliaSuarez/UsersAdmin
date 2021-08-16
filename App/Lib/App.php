@@ -1,4 +1,6 @@
-<?php namespace App\Lib;
+<?php
+
+namespace App\Lib;
 
 class App
 {
@@ -6,6 +8,6 @@ class App
     {
         Logger::enableSystemLogs();
         $logger = Logger::getInstance();
-        $logger->info('>>>> Testing App Logger');
+        $logger->info('>>>> Testing App Logger ');
     }
 }
