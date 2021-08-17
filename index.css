@@ -34,6 +34,11 @@ body {
   color: #fafafa;
   font-size: 50px;
   margin: 24px;
+  display: flex;
+  align-items: normal;
+}
+.dark-title img {
+  fill: #fafafa;
 }
 
 .content {
@@ -164,4 +169,11 @@ input:focus-visible {
   color: #fafafa;
   box-shadow: 1px 1px 5px 1px #565656;
   border: 1px solid transparent;
+}
+
+.table-row-button-action {
+  cursor: pointer;
+}
+.table-cell-button-action {
+  width: 30px;
 }

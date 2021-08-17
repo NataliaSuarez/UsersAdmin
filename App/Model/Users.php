@@ -27,25 +27,39 @@ class Users
         return end($pdo->query("SELECT * FROM users")->fetchAll());
     }
 
-    // public static function findById(int $id)
-    // {
-    //     foreach (self::$DATA as $user) {
-    //         if ($user->id === $id) {
-    //             return $user;
-    //         }
-    //     }
-    //     return [];
-    // }
+    public static function findById(int $id)
+    {
+        return Connection::getInstance()->pdo->query("SELECT * FROM users WHERE user_id = $id")->fetchAll()[0];
+    }
 
-    // public static function load()
-    // {
-    //     $DB_PATH = Connection::getInstance()->pdo;
-    //     self::$DATA = json_decode(file_get_contents($DB_PATH));
-    // }
+    public static function update($id, $fname, $lname, $mail)
+    {
+        $pdo = Connection::getInstance()->pdo;
+        $sql = 'UPDATE users
+        SET first_name = :first_name, last_name = :last_name, mail = :mail
+        WHERE user_id = :user_id';
 
-    // public static function save()
-    // {
-    //     $DB_PATH = Config::get('DB_PATH', __DIR__ . '/../../db.json');
-    //     file_put_contents($DB_PATH, json_encode(self::$DATA, JSON_PRETTY_PRINT));
-    // }
+        // prepare statement
+        $statement = $pdo->prepare($sql);
+
+        // bind params
+        $statement->bindParam(':user_id', $id);
+        $statement->bindParam(':first_name', $fname);
+        $statement->bindParam(':last_name', $lname);
+        $statement->bindParam(':mail', $mail);
+        if ($statement->execute()) {
+            return $pdo->query("SELECT * FROM users WHERE user_id = $id")->fetchAll()[0];
+        }
+    }
+
+    public static function remove($id)
+    {
+        $pdo = Connection::getInstance()->pdo;
+        $sql = 'DELETE FROM users WHERE user_id = :user_id';
+        $statement = $pdo->prepare($sql);
+        $statement->bindParam(':user_id', $id);
+        if ($statement->execute()) {
+            return true;
+        }
+    }
 }

@@ -31,6 +31,18 @@ Router::post('/users/new', function (Request $req, Response $res) {
   (new Users())->new($req, $res);
 });
 
+Router::get('/users/update/([0-9]*)', function (Request $req, Response $res) {
+  (new Users())->update($req, $res);
+});
+
+Router::post('/users/update/([0-9]*)', function (Request $req, Response $res) {
+  (new Users())->update($req, $res);
+});
+
+Router::get('/users/remove/([0-9]*)', function (Request $req, Response $res) {
+  (new Users())->remove($req, $res);
+});
+
 Router::get('/api/user/([0-9]*)', function (Request $req, Response $res) {
   $res->toJSON([
     'user' =>  ['id' => $req->params[0]],
