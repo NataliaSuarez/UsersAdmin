@@ -1,8 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap");
+
+:root {
+  --main-primary-color: #00e072;
+}
 
 body {
   margin: 0;
-  font-family: Atkinson Hyperlegible, sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 .section {
@@ -11,7 +15,7 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  font-family: Atkinson Hyperlegible, sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 .dark-section {
@@ -21,13 +25,14 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-family: Atkinson Hyperlegible, sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 
 .title {
   color: #333;
-  font-size: 42px;
-  margin: 8px 0;
+  font-size: 28px;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
 }
 
 .dark-title {
@@ -35,10 +40,11 @@ body {
   font-size: 50px;
   margin: 24px;
   display: flex;
-  align-items: normal;
+  align-items: flex-end;
 }
 .dark-title img {
   fill: #fafafa;
+  padding: 3px;
 }
 
 .content {
@@ -64,9 +70,19 @@ body {
   margin: 3px;
   padding: 4px 8px;
   height: max-content;
-  background: #333;
-  color: yellowgreen;
+  color: var(--main-primary-color);
   text-decoration: none;
+}
+
+.link-add {
+  text-transform: uppercase;
+  margin: 3px;
+  padding: 4px 8px;
+  height: max-content;
+  color: var(--main-primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .form-card {
@@ -104,7 +120,7 @@ body {
 }
 
 label {
-  color: yellowgreen;
+  color: var(--main-primary-color);
   text-transform: uppercase;
 }
 input {
@@ -117,26 +133,24 @@ input:focus-visible {
 }
 
 .submit-button {
-  background: yellowgreen;
-  text-transform: uppercase;
+  background: var(--main-primary-color);
   border: 1px solid #fafafa;
   padding: 10px;
   border-radius: 24px;
   color: #fafafa;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-weight: 300;
   font-size: 13px;
   align-self: flex-end;
   cursor: pointer;
 }
 .submit-button:hover {
   background: #fafafa;
-  color: yellowgreen;
-  border: 1px yellowgreen solid;
+  color: var(--main-primary-color);
+  border: 1px var(--main-primary-color) solid;
 }
 
 .success-notification {
-  background: yellowgreen;
+  background: var(--main-primary-color);
   color: #fafafa;
   font-size: 14px;
   padding: 10px;
@@ -150,7 +164,7 @@ input:focus-visible {
 }
 
 .notification-button {
-  background: yellowgreen;
+  background: var(--main-primary-color);
   border: none;
   color: #fafafa;
   font-size: 14px;
@@ -165,7 +179,7 @@ input:focus-visible {
 
 .table-header {
   text-align: left;
-  background: yellowgreen;
+  background: var(--main-primary-color);
   color: #fafafa;
   height: 40px;
 }
