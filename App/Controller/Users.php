@@ -8,43 +8,60 @@ use App\Lib\Response;
 
 class Users
 {
+
+    function renderBaseTemplate($base_path, $content)
+    {
+        return <<<HTML
+        <link rel="stylesheet" type="text/css" href="$base_path/index.css">
+        <div class="section">
+            <div class="header">
+                <span class="dark-title"><img src="$base_path/src/assets/people_alt_black_24dp.svg"> Users Admin</span>
+                <div class="content">
+                    <a class="link" href="/users">Users list</a>
+                    <a class="link-add" href="/users/new"><img src="$base_path/src/assets/add_circle_outline_black_24dp.svg">ADD NEW USER</a>
+                </div>
+            </div>
+            {$content}
+        <div>
+        HTML;
+    }
+
+    function renderUserItem($user)
+    {
+        if (empty($user)) {
+            return '';
+        }
+        return <<<HTML
+            <tr class="table-row-item">
+                <td>{$user['user_id']}</td>
+                <td>{$user['first_name']}</td>
+                <td>{$user['last_name']}</td>
+                <td>{$user['mail']}</td>
+                <td class="table-cell-button-action">
+                    <a href="/users/update/{$user['user_id']}">
+                        <img class="table-row-button-action" src="../src/assets/edit_black_24dp.svg">
+                    </a>
+                </td>
+                <td class="table-cell-button-action">
+                    <a href="/users/remove/{$user['user_id']}">
+                        <img class="table-row-button-action" src="../src/assets/delete_outline_black_24dp.svg">
+                    </a>
+                </td>
+            </tr>
+        HTML;
+    }
+
     public function all()
     {
         $users = UsersRepository::all();
         $renderUsers = '';
 
         foreach ($users as $user) {
-            $renderUsers = $renderUsers . <<<HTML
-                <tr class="table-row-item">
-                    <td>{$user['user_id']}</td>
-                    <td>{$user['first_name']}</td>
-                    <td>{$user['last_name']}</td>
-                    <td>{$user['mail']}</td>
-                    <td class="table-cell-button-action">
-                        <a href="/users/update/{$user['user_id']}">
-                            <img class="table-row-button-action" src="../src/assets/edit_black_24dp.svg">
-                        </a>
-                    </td>
-                    <td class="table-cell-button-action">
-                        <a href="/users/remove/{$user['user_id']}">
-                            <img class="table-row-button-action" src="../src/assets/delete_outline_black_24dp.svg">
-                        </a>
-                    </td>
-                </tr>
-            HTML;
+            $renderUsers = $renderUsers . $this->renderUserItem($user);
         }
 
-        echo <<<HTML
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <div class="section">
-            <div class="header">
-                <span class="dark-title"><img src="../src/assets/people_alt_black_24dp.svg"> Users Admin</span>
-                <div class="content">
-                    <a class="link" href="/users">Users list</a>
-                    <a class="link-add" href="/users/new"><img src="../src/assets/add_circle_outline_black_24dp.svg">ADD NEW USER</a>
-                </div>
-            </div>
-            <div class="list-content">
+        echo $this->renderBaseTemplate('../', <<<HTML
+        <div class="list-content">
                 <div class="form-card" style="width:90%; height: 70vh">
                     <span class="title">
                         Users
@@ -62,8 +79,7 @@ class Users
                     </table>
                 </div>
             </div>
-        <div>
-        HTML;
+        HTML);
     }
 
     public function new(Request $req, Response $res)
@@ -74,45 +90,34 @@ class Users
             $user = UsersRepository::add($userDataForm['firstname'], $userDataForm['lastname'], $userDataForm['mail']);
             $renderAlert = <<<HTML
                 <span class="success-notification">{$user['first_name']} has already created with id {$user['user_id']}!<span>
-                <!-- <button class="notification-button">x</button> -->
             HTML;
         }
 
-        echo <<<HTML
-        <link rel="stylesheet" type="text/css" href="../index.css">
-        <div class="section">
-            <div class="header">
-                <span class="dark-title"><img src="../src/assets/people_alt_black_24dp.svg"> Users Admin</span>
-                <div class="content">
-                <a class="link" href="/users">Users list</a>
-                    <a class="link-add" href="/users/new"><img src="../src/assets/add_circle_outline_black_24dp.svg">ADD NEW USER</a>
-                </div>
-            </div>
-            <div>
-                {$renderAlert}
-            </div>
-            <div class="form-card">
-                <span class="title">Create new user</span>
-                <div class="form-content">
-                    <form action="new" method="post" class="form">
-                        <div class="text-field" style="margin-top:6px">
-                            <label for="firstname">First name</label>
-                            <input type="text" id="firstname" name="firstname">
-                        </div>
-                        <div class="text-field">
-                            <label for="lastname">Last name</label>
-                            <input type="text" id="lastname" name="lastname">
-                        </div>
-                        <div class="text-field">
-                            <label for="mail">Mail</label>
-                            <input type="email" id="mail" name="mail">
-                        </div>
-                        <input type="submit" value="Add" class="submit-button">
-                    </form>
-                </div>
-            </div>
+        echo $this->renderBaseTemplate('../', <<<HTML
         <div>
-        HTML;
+            {$renderAlert}
+        </div>
+        <div class="form-card">
+            <span class="title">Create new user</span>
+            <div class="form-content">
+                <form action="new" method="post" class="form">
+                    <div class="text-field" style="margin-top:6px">
+                        <label for="firstname">First name</label>
+                        <input type="text" id="firstname" name="firstname">
+                    </div>
+                    <div class="text-field">
+                        <label for="lastname">Last name</label>
+                        <input type="text" id="lastname" name="lastname">
+                    </div>
+                    <div class="text-field">
+                        <label for="mail">Mail</label>
+                        <input type="email" id="mail" name="mail">
+                    </div>
+                    <input type="submit" value="Add" class="submit-button">
+                </form>
+            </div>
+        </div>
+        HTML);
     }
 
     public function update(Request $req, Response $res)
@@ -131,17 +136,7 @@ class Users
             HTML;
         }
 
-        echo <<<HTML
-        <link rel="stylesheet" type="text/css" href="../../index.css">
-        <div class="section">
-            <div class="header">
-                <span class="dark-title"><img src="../../src/assets/people_alt_black_24dp.svg"> Users Admin</span>
-                <div class="content">
-                <a class="link" href="/users">Users list</a>
-                    <a class="link-add" href="/users/new"><img src="../../src/assets/add_circle_outline_black_24dp.svg">ADD NEW USER</a>
-
-                </div>
-            </div>
+        echo $this->renderBaseTemplate('../../', <<<HTML
             <div>
                 {$renderAlert}
             </div>
@@ -165,8 +160,7 @@ class Users
                     </form>
                 </div>
             </div>
-        <div>
-        HTML;
+        HTML);
     }
 
     public function remove(Request $req, Response $res)
@@ -201,16 +195,7 @@ class Users
             HTML;
         }
 
-        echo <<<HTML
-        <link rel="stylesheet" type="text/css" href="../../index.css">
-        <div class="section">
-            <div class="header">
-                <span class="dark-title"><img src="../../../src/assets/people_alt_black_24dp.svg"> Users Admin</span>
-                <div class="content">
-                    <a class="link" href="/users">Users list</a>
-                    <a class="link-add" href="/users/new"><img src="../../../src/assets/add_circle_outline_black_24dp.svg">ADD NEW USER</a>
-                </div>
-            </div>
+        echo $this->renderBaseTemplate('../../../', <<<HTML
             <div>
                 {$renderAlert}
             </div>
@@ -232,7 +217,6 @@ class Users
                     </table>
                 </div>
             </div>
-        <div>
-        HTML;
+        HTML);
     }
 }
