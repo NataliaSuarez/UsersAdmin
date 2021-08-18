@@ -74,7 +74,7 @@ class Users
                         <input type="email" id="mail" name="mail" placeholder="john.smith@email.com" onchange="return validateMail(this)">
                         <span class="error-text" id="error-mail"></span>
                     </div>
-                    <input type="submit" value="Add" class="submit-button">
+                    <input type="submit" id="submit" value="Add" class="submit-button">
                 </form>
             </div>
         </div>
@@ -92,7 +92,6 @@ class Users
         if (!empty($userDataForm)) {
             $user = UsersRepository::update($id, $userDataForm['firstname'], $userDataForm['lastname'], $userDataForm['mail']);
             $renderAlert = <<<HTML
-                <!-- <span class="success-notification">{$user['first_name']} has already updated!<span> -->
                 <span class="success-notification">{$userDataForm['firstname']} has already updated!<span>
             HTML;
         }
@@ -104,18 +103,21 @@ class Users
             <div class="form-card">
                 <span class="title">Update user</span>
                 <div class="form-content">
-                    <form action="/users/update/$id" method="post" class="form">
+                    <form action="/users/update/$id" method="post" class="form" onchange="return checkForm(this);">
                         <div class="text-field" style="margin-top:6px">
                             <label for="firstname">First name</label>
-                            <input type="text" id="firstname" name="firstname" value={$user['first_name']}>
+                            <input type="text" id="firstname" name="firstname" required placeholder="John" onchange="return validateString(this)" value={$user['first_name']}>
+                            <span class="error-text" id="error-firstname"></span>
                         </div>
                         <div class="text-field">
                             <label for="lastname">Last name</label>
-                            <input type="text" id="lastname" name="lastname" value={$user['last_name']}>
+                            <input type="text" id="lastname" name="lastname" required placeholder="Smith" onchange="return validateString(this)" value={$user['last_name']}>
+                            <span class="error-text" id="error-lastname"></span>
                         </div>
                         <div class="text-field">
                             <label for="mail">Mail</label>
-                            <input type="email" id="mail" name="mail" value={$user['mail']}>
+                            <input type="email" id="mail" name="mail" placeholder="john.smith@email.com" onchange="return validateMail(this)" value={$user['mail']}>
+                            <span class="error-text" id="error-mail"></span>
                         </div>
                         <input type="submit" id="submit" value="Update" class="submit-button">
                     </form>
