@@ -2,6 +2,8 @@
 
 Short project with login and CRUD of users
 
+<!-- [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=NataliaSuarez&repo=UsersAdmin)](https://github.com/anuraghazra/github-readme-stats) -->
+
 ### Requirements
 
 - php 7.3
