@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/languages/count/NataliaSuarez/UsersAdmin" />
   <img src="https://img.shields.io/github/languages/top/NataliaSuarez/UsersAdmin?color=blueviolet" />
-  <img src="https://img.shields.io/github/commit-activity/m/NataliaSuarez/UsersAdmin?color=green" />
+  <img src="https://img.shields.io/github/last-commit/NataliaSuarez/UsersAdmin" />
   <img src="https://img.shields.io/github/issues-raw/NataliaSuarez/UsersAdmin?color=orange" />
   <img src="https://img.shields.io/github/issues-pr-closed/NataliaSuarez/UsersAdmin?color=success" />
 </p>
