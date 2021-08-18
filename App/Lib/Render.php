@@ -8,6 +8,7 @@ class Render
   {
     return <<<HTML
         <link rel="stylesheet" type="text/css" href="$base_path/index.css">
+        <script type="text/javascript" src="$base_path/src/validation-form.js"></script>
         <div class="section">
             <div class="header">
                 <span class="dark-title"><img src="$base_path/src/assets/people_alt_black_24dp.svg"> Users Admin</span>

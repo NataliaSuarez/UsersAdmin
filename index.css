@@ -6,6 +6,7 @@
   --secondary-white: #d8d6d6;
   --black: rgb(2, 2, 2);
   --primary-gray: #565656;
+  --secondary-gray: #888888;
   --primary-dark-gray: #171717;
   --secondary-dark-gray: #333;
 }
@@ -123,7 +124,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 3px;
-  height: 60px;
+  height: 70px;
   width: 100%;
 }
 
@@ -135,9 +136,14 @@ input {
   border: 0px;
   background: var(--white);
   border-bottom: 1px var(--secondary-dark-gray) solid;
+  color: var(--secondary-dark-gray);
 }
 input:focus-visible {
   outline-width: 0;
+}
+
+.error-text {
+  font-size: 12px;
 }
 
 .submit-button {
@@ -150,6 +156,9 @@ input:focus-visible {
   font-size: 13px;
   align-self: flex-end;
   cursor: pointer;
+}
+.submit-button:disabled {
+  background: var(--secondary-gray);
 }
 .submit-button:hover {
   background: var(--white);
