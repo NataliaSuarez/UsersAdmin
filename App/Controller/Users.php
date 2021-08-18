@@ -58,18 +58,21 @@ class Users
         <div class="form-card">
             <span class="title">Create new user</span>
             <div class="form-content">
-                <form action="new" method="post" class="form">
+                <form action="new" method="post" class="form" onchange="return checkForm(this);">
                     <div class="text-field" style="margin-top:6px">
                         <label for="firstname">First name</label>
-                        <input type="text" id="firstname" name="firstname">
+                        <input type="text" id="firstname" name="firstname" required placeholder="John" onchange="return validateString(this)">
+                        <span class="error-text" id="error-firstname"></span>
                     </div>
                     <div class="text-field">
                         <label for="lastname">Last name</label>
-                        <input type="text" id="lastname" name="lastname">
+                        <input type="text" id="lastname" name="lastname" required placeholder="Smith" onchange="return validateString(this)">
+                        <span class="error-text" id="error-lastname"></span>
                     </div>
                     <div class="text-field">
                         <label for="mail">Mail</label>
-                        <input type="email" id="mail" name="mail">
+                        <input type="email" id="mail" name="mail" placeholder="john.smith@email.com" onchange="return validateMail(this)">
+                        <span class="error-text" id="error-mail"></span>
                     </div>
                     <input type="submit" value="Add" class="submit-button">
                 </form>
@@ -114,7 +117,7 @@ class Users
                             <label for="mail">Mail</label>
                             <input type="email" id="mail" name="mail" value={$user['mail']}>
                         </div>
-                        <input type="submit" value="Update" class="submit-button">
+                        <input type="submit" id="submit" value="Update" class="submit-button">
                     </form>
                 </div>
             </div>
