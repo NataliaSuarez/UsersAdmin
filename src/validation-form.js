@@ -28,7 +28,7 @@ function validateMail(input) {
   );
 }
 
-function checkForm(form) {
+function checkForm() {
   const isFirstnameValid = stringRegex.test(
     document.getElementById("firstname").value
   );
@@ -36,9 +36,7 @@ function checkForm(form) {
     document.getElementById("lastname").value
   );
   const isMailValid = emailRegex.test(document.getElementById("mail").value);
-
   const submitButton = document.getElementsByClassName("submit-button")[0];
-  console.log(submitButton);
   if (!isFirstnameValid || !isLastnameValid || !isMailValid) {
     submitButton.disabled = true;
   } else {
