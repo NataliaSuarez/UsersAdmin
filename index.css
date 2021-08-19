@@ -100,8 +100,16 @@ body {
 }
 
 .header {
-  background: var(--black);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.65) 0,
+    rgba(0, 0, 0, 0) 1px
+  );
+  background-size: 1.3px 1.3px;
+  height: 30vh;
   width: 100%;
+  /* animation-name: lazyopacity;
+  animation-duration: 0.7s; */
 }
 
 .header-home {
@@ -111,13 +119,16 @@ body {
     rgba(0, 0, 0, 0) 1px
   );
   background-size: 1.3px 1.3px;
-  height: 30%;
+  height: 30vh;
   width: 100%;
   animation-name: initialheader;
   animation-duration: 1.3s;
 }
 
 .header-home span {
+  height: 80%;
+}
+.header span {
   height: 80%;
 }
 
@@ -255,6 +266,15 @@ body {
   }
 }
 
+@keyframes lazyopacity {
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .text-description-title {
   font-weight: 500;
   word-break: break-word;
@@ -325,8 +345,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 1px 1px 25px 1px var(--black);
-  border-radius: 30px;
+  border: 1px solid var(--primary-color);
   /* overflow-y: scroll; */
   margin-top: 30px;
   margin-bottom: 10px;
@@ -448,7 +467,7 @@ input:focus-visible {
   width: 90vw;
   text-align: center;
   overflow: hidden;
-  height: 60%;
+  height: 50%;
 }
 
 .slides {
@@ -472,7 +491,7 @@ input:focus-visible {
   /* scroll-snap-align: start; */
   flex-shrink: 0;
   width: 90vw;
-  height: 50vh;
+  height: 30vh;
   margin-right: 50px;
   transform-origin: center center;
   transform: scale(1);
@@ -493,14 +512,14 @@ input:focus-visible {
 
 .slider > a {
   display: inline-block;
-  width: 2vh;
-  height: 2vh;
+  width: 1vh;
+  height: 1vh;
   background: var(--primary-color);
   text-decoration: none;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  margin: 0 0 0.5rem 0;
+  margin: 48px 8px 0 8px;
   position: relative;
 }
 .slider > a:active {

@@ -20,7 +20,7 @@ class Users
 
         echo Render::renderBaseTemplate('../', <<<HTML
         <div class="list-content">
-                <div class="form-card" style="width:90%; height: 70vh">
+                <div class="form-card" style="width:90%">
                     <span class="title">
                         Users
                     </span>
@@ -163,7 +163,7 @@ class Users
                 {$renderAlert}
             </div>
             <div class="list-content">
-                <div class="form-card" style="width:90%; height: 70vh">
+                <div class="form-card" style="width:90%">
                     <span class="title">
                         Users
                     </span>

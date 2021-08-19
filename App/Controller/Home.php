@@ -13,12 +13,12 @@ class Home
                     <link rel="stylesheet" type="text/css" href="index.css">
                 </head>
                 <body>
-                    <div class="section" id->
+                    <div class="section" >
                         <div class="header-home">
                             <div class="content">
-                                <a class="link" href="/users">Users list</a>
-                                <a class="link-add" href="/users/new"><img src="../src/assets/add_circle_outline_black_24dp.svg">ADD NEW
-                                USER</a>
+                                <a class="link" href="/">Home</a>
+                                <a class="link" href="/users">Users</a>
+                                <a class="link-add" href="/users/new">NEW USER <img src="../src/assets/add_circle_outline_black_24dp.svg" style="margin-left: 4px; margin-bottom: 2px"></a>
                                 <a class="link-add" href="#">Login/logout</a>
                             </div>
                             <span class="dark-title"> Users Admin</span> <!--<img src="../src/assets/people_alt_black_24dp.svg">-->
@@ -39,7 +39,7 @@ class Home
                         </div>
                     </div>
                     <div class="section-actions" id="actions-section">
-                        <div class="dark-title" style="height:20%">main actions</div>
+                        <div class="dark-title" style="height:30%">main actions</div>
                             <div class="slider">
                                 <a href="#slide-1"></a>
                                 <a href="#slide-2"></a>
