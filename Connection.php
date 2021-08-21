@@ -20,9 +20,6 @@ class Connection
       try {
         $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
         $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
-        if ($this->pdo) {
-          // echo "Connected to the $this->database database successfully!";
-        }
       } catch (PDOException $e) {
         die($e->getMessage());
       }

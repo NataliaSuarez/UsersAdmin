@@ -15,6 +15,8 @@ $LOG_PATH = Config::get('LOG_PATH', '');
 
 $conn = Connection::getInstance();
 
+require('./migrations.php');
+
 Router::get('/', function () {
   (new Home())->indexAction();
 });
