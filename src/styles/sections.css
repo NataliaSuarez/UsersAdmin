@@ -1,0 +1,28 @@
+.section {
+  height: 100vh;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.section-actions {
+  height: 100vh;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "JetBrains Mono", monospace;
+  justify-content: center;
+}
+
+.dark-section {
+  height: 20%;
+  width: 100%;
+  background: var(--primary-dark-gray);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "JetBrains Mono", monospace;
+}

@@ -1,0 +1,29 @@
+.list-content {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-list {
+  width: 100%;
+}
+
+.table-header {
+  text-align: left;
+  background: var(--primary-color);
+  color: var(--white);
+  height: 40px;
+}
+
+.table-row-item:hover {
+  box-shadow: 1px 1px 3px 1px var(--secondary-white);
+  border-radius: 6px;
+}
+
+.table-row-button-action {
+  cursor: pointer;
+}
+.table-cell-button-action {
+  width: 30px;
+}

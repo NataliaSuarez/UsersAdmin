@@ -20,7 +20,7 @@ class Users
 
         echo Render::renderBaseTemplate('../', <<<HTML
         <div class="list-content">
-                <div class="form-card" style="width:90%; height: 70vh">
+                <div class="card-container" style="width:90%">
                     <span class="title">
                         Users
                     </span>
@@ -55,7 +55,7 @@ class Users
         <div>
             {$renderAlert}
         </div>
-        <div class="form-card">
+        <div class="card-container">
             <span class="title">Create new user</span>
             <div class="form-content">
                 <form action="new" method="post" class="form" onchange="return checkForm(this);">
@@ -100,7 +100,7 @@ class Users
             <div>
                 {$renderAlert}
             </div>
-            <div class="form-card">
+            <div class="card-container">
                 <span class="title">Update user</span>
                 <div class="form-content">
                     <form action="/users/update/$id" method="post" class="form" onchange="return checkForm(this);">
@@ -163,7 +163,7 @@ class Users
                 {$renderAlert}
             </div>
             <div class="list-content">
-                <div class="form-card" style="width:90%; height: 70vh">
+                <div class="card-container" style="width:90%">
                     <span class="title">
                         Users
                     </span>

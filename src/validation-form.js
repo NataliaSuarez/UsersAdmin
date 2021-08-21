@@ -28,7 +28,7 @@ function validateMail(input) {
   );
 }
 
-function checkForm(form) {
+function checkForm() {
   const isFirstnameValid = stringRegex.test(
     document.getElementById("firstname").value
   );
@@ -36,12 +36,28 @@ function checkForm(form) {
     document.getElementById("lastname").value
   );
   const isMailValid = emailRegex.test(document.getElementById("mail").value);
-
   const submitButton = document.getElementsByClassName("submit-button")[0];
-  console.log(submitButton);
   if (!isFirstnameValid || !isLastnameValid || !isMailValid) {
     submitButton.disabled = true;
   } else {
     submitButton.disabled = false;
+  }
+}
+
+function closeNavbar(e) {
+  document.getElementById("menu").checked = false;
+}
+
+function toggleSwipeButton(e) {
+  const current = document.getElementById("swipe-button").href;
+  const splitted = current.split("/");
+  const href = splitted[splitted.length - 1];
+
+  if (href === "" || href === "#home") {
+    document.getElementById("swipe-button").href = "#actions-section";
+    document.getElementById("swipe-button").style.transform = "rotate(180deg)";
+  } else {
+    document.getElementById("swipe-button").href = "#home";
+    document.getElementById("swipe-button").style.transform = "rotate(0)";
   }
 }

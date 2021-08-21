@@ -1,0 +1,82 @@
+.slider {
+  width: 90vw;
+  text-align: center;
+  overflow: hidden;
+  height: 50%;
+}
+
+.slides {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.slides::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.slides::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+.slides::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slides > div {
+  /* scroll-snap-align: start; */
+  flex-shrink: 0;
+  width: 90vw;
+  height: 30vh;
+  margin-right: 50px;
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform 0.5s;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+
+  color: var(--secondary-gray);
+  display: flex;
+  justify-content: space-around;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+.slides > div > img {
+  filter: drop-shadow(2px 4px 6px var(--primary-gray)) grayscale(0.5);
+}
+
+.slider > a {
+  display: inline-block;
+  width: 2vh;
+  height: 2vh;
+  background: var(--primary-color);
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 48px 8px 0 8px;
+  position: relative;
+}
+.slider > a:active {
+  top: 1px;
+}
+.slider > a:focus {
+  background: #000;
+}
+
+.slider div p {
+  font-weight: 100;
+  font-size: 24px;
+  text-transform: none;
+  color: var(--primary-gray);
+}
+
+.slider div a {
+  font-weight: 100;
+  font-size: 17px;
+  text-transform: none;
+  color: var(--primary-gray);
+}
