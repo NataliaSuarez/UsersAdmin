@@ -12,10 +12,17 @@ class Render
         <div class="section">
             <div class="header">
                 <div class="content">
-                    <a class="link" href="/">Home</a>
-                    <a class="link" href="/users">Users</a>
-                    <a class="link-add" href="/users/new">NEW USER <img src="$base_path/src/assets/add_circle_outline_black_24dp.svg" style="margin-left: 4px; margin-bottom: 2px"></a>
-                    <a class="link-add" href="#">Login/logout</a>
+                    <nav>
+                        <input type="checkbox" id="menu">
+                        <label for="menu"> ☰ </label>
+                        <ul>
+                            <li><a class="link" href="/">Home</a></li>
+                            <li><a class="link" href="/users">Users</a></li>
+                            <li><a class="link-add" href="/users/new">NEW USER <img src="../src/assets/add_circle_outline_black_24dp.svg" style="margin-left: 4px; margin-bottom: 2px"></a></li>
+                            <li><a class="link-add" href="#">Login/logout</a></li>
+                            <span class="close-navbar" onclick="return closeNavbar(this);"></span>
+                        </ul>
+                    </nav>
                 </div>
                 <span class="dark-title"> Users Admin</span> <!--<img src="../src/assets/people_alt_black_24dp.svg">-->
             </div>

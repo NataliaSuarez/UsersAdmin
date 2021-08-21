@@ -43,3 +43,21 @@ function checkForm() {
     submitButton.disabled = false;
   }
 }
+
+function closeNavbar(e) {
+  document.getElementById("menu").checked = false;
+}
+
+function toggleSwipeButton(e) {
+  const current = document.getElementById("swipe-button").href;
+  const splitted = current.split("/");
+  const href = splitted[splitted.length - 1];
+
+  if (href === "" || href === "#home") {
+    document.getElementById("swipe-button").href = "#actions-section";
+    document.getElementById("swipe-button").style.transform = "rotate(180deg)";
+  } else {
+    document.getElementById("swipe-button").href = "#home";
+    document.getElementById("swipe-button").style.transform = "rotate(0)";
+  }
+}
