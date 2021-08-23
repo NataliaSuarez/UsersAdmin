@@ -44,6 +44,17 @@ function checkForm() {
   }
 }
 
+function checkLogin() {
+  const isMailValid = emailRegex.test(document.getElementById("mail").value);
+  const isPasswordValid = !!document.getElementById("password").value;
+  const submitButton = document.getElementsByClassName("submit-button")[0];
+  if (!isMailValid || !isPasswordValid) {
+    submitButton.disabled = true;
+  } else {
+    submitButton.disabled = false;
+  }
+}
+
 function closeNavbar(e) {
   document.getElementById("menu").checked = false;
 }
