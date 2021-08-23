@@ -11,6 +11,8 @@
 
 :root {
   --primary-color: yellowgreen;
+  --primary-success: yellowgreen;
+  --primary-error: #e00202;
   --white: #fafafa;
   --secondary-white: #d8d6d6;
   --black: rgb(2, 2, 2);

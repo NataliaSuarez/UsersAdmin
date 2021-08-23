@@ -64,7 +64,21 @@ input:focus-visible {
 }
 
 .success-notification {
-  background: var(--primary-color);
+  background: var(--primary-success);
+  color: var(--white);
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+  right: 10vh;
+  top: 6vh;
+  box-shadow: 1px 1px 25px 1px var(--secondary-dark-gray);
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.error-notification {
+  background: var(--primary-error);
   color: var(--white);
   font-size: 14px;
   padding: 10px;

@@ -7,29 +7,56 @@ use Connection;
 
 class Users
 {
-    // public $list = [];
 
     public static function all()
     {
         return Connection::getInstance()->pdo->query("SELECT * FROM users")->fetchAll();
     }
 
-    public static function add($fname, $lname, $mail)
+    public static function add($fname, $lname, $mail, $password)
     {
         $pdo = Connection::getInstance()->pdo;
-        $sql = 'insert into users(first_name, last_name, mail) values(:first_name,:last_name, :mail)';
+
+
+        $options = [
+            'cost' => 12,
+        ];
+        $hash_password = password_hash($password, PASSWORD_BCRYPT, $options);
+
+        // $hash_password = hash('sha256', $password, false); //Password encryption
+        $sql = 'insert into users(first_name, last_name, mail, password) values(:first_name,:last_name, :mail, :password)';
         $statement = $pdo->prepare($sql);
         $statement->execute([
             'last_name' => $fname,
             'first_name' => $lname,
             'mail' => $mail,
+            'password' => $hash_password
         ]);
+        // verify $pdo->lastInsertId();
         return end($pdo->query("SELECT * FROM users")->fetchAll());
     }
 
     public static function findById(int $id)
     {
         return Connection::getInstance()->pdo->query("SELECT * FROM users WHERE user_id = $id")->fetchAll()[0];
+    }
+
+    public static function findByMail($mail)
+    {
+        // TODO: add 'OR username=:username'
+        $pdo = Connection::getInstance()->pdo;
+        // $user = Connection::getInstance()->pdo->query("SELECT * FROM users WHERE mail = $mail")->fetchAll();
+        $stm = $pdo->prepare('SELECT * FROM users WHERE mail = ?');
+        // $stm->bindParam(1, $limit_from, PDO::PARAM_INT);
+        // $stm->bindParam(2, $per_page, PDO::PARAM_INT);
+        $stm->bindParam(1, $mail, \PDO::PARAM_STR);
+        $stm->execute();
+        $user = $stm->fetchAll();
+        if (empty($user)) {
+            return null;
+        } else {
+            return $user[0];
+        }
     }
 
     public static function update($id, $fname, $lname, $mail)
