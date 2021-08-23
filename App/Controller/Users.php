@@ -205,7 +205,7 @@ class Users
             <div class="card-container">
                 <span class="title">Login</span>
                 <div class="form-content">
-                    <form action="login" method="post" class="form" onchange="return checkForm(this);">
+                    <form action="login" method="post" class="form" onchange="return checkLogin(this);">
                         <div class="text-field">
                             <label for="mail">Mail</label>
                             <input type="email" id="mail" name="mail" placeholder="john.smith@email.com" onchange="return validateMail(this)">
@@ -289,7 +289,8 @@ class Users
             <div class="card-container">
                 <span class="title">Sign up</span>
                 <div class="form-content">
-                    <form action="registration" method="post" class="form" onchange="return checkForm(this);">
+                    <!-- <form action="registration" method="post" class="form" onchange="return checkForm(this);"> -->
+                    <form action="registration" method="post" class="form" >
                         <div class="text-field" style="margin-top:6px">
                             <label for="firstname">First name</label>
                             <input type="text" id="firstname" name="firstname" required placeholder="John" onchange="return validateString(this)">
@@ -426,6 +427,7 @@ class Users
 
         $_SESSION['uid'] = null;
 
+        header("refresh:0;url=/login");
         echo Render::renderPublicBaseTemplate('../', <<<HTML
             <div>
                 {$renderAlert}

@@ -61,6 +61,9 @@ if (!empty($_SESSION['uid'])) {
   // });
 }
 if (empty($session_uid)) {
+  Router::get('/', function (Request $req, Response $res) {
+    (new Users())->login($req, $res);
+  });
   Router::get('/login', function (Request $req, Response $res) {
     (new Users())->login($req, $res);
   });
