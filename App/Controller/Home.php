@@ -21,7 +21,7 @@ class Home
                                     <a class="link" href="/">Home</a>
                                     <a class="link" href="/users">Users</a>
                                     <a class="link-add" href="/users/new">NEW USER <img src="../src/assets/add_circle_outline_black_24dp.svg" style="margin-left: 4px; margin-bottom: 2px"></a>
-                                    <a class="link-add" href="#">Login/logout</a>
+                                    <a class="link-add" href="/logout">Logout</a>
                                 </div>
                                 <nav class="mobile-navbar-container">
                                     <input type="checkbox" id="menu">
@@ -108,7 +108,7 @@ class Home
                     </div>
                     <div class="nav-button-container">
                         <a id="swipe-button" href="" class="nav-button" onclick="return toggleSwipeButton(this)">
-                            <span>^</span>
+                            <span>↓</span>
                         <a/>
                     </div>
                 </body>
