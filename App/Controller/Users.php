@@ -50,6 +50,7 @@ class Users
             $renderAlert = <<<HTML
                 <span class="success-notification">{$user['first_name']} has already created with id {$user['user_id']}!<span>
             HTML;
+            header("refresh:1;url=/users");
         }
 
         echo Render::renderBaseTemplate('../', <<<HTML
@@ -101,6 +102,7 @@ class Users
             $renderAlert = <<<HTML
                 <span class="success-notification">{$userDataForm['firstname']} has already updated!<span>
             HTML;
+            header("refresh:1;url=/users");
         }
 
         echo Render::renderBaseTemplate('../../', <<<HTML
@@ -126,6 +128,11 @@ class Users
                             <input type="email" id="mail" name="mail" placeholder="john.smith@email.com" onchange="return validateMail(this)" value={$user['mail']}>
                             <span class="error-text" id="error-mail"></span>
                         </div>
+                        <!-- <div class="text-field">
+                            <label for="mail">Password</label>
+                            <input type="password" id="password" name="password" placeholder="********">
+                            <span class="error-password" id="error-password"></span>
+                        </div> -->
                         <input type="submit" id="submit" value="Update" class="submit-button">
                     </form>
                 </div>

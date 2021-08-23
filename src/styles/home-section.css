@@ -62,7 +62,6 @@
   align-items: center;
   position: relative;
   font-size: 2em;
-  padding-top: 4px;
   color: var(--white);
   filter: drop-shadow(1px 1px 4px var(--secondary-gray));
 }

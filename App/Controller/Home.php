@@ -108,7 +108,7 @@ class Home
                     </div>
                     <div class="nav-button-container">
                         <a id="swipe-button" href="" class="nav-button" onclick="return toggleSwipeButton(this)">
-                            <span>^</span>
+                            <span>↓</span>
                         <a/>
                     </div>
                 </body>

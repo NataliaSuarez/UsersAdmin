@@ -27,8 +27,8 @@ class Users
         $sql = 'insert into users(first_name, last_name, mail, password) values(:first_name,:last_name, :mail, :password)';
         $statement = $pdo->prepare($sql);
         $statement->execute([
-            'last_name' => $fname,
-            'first_name' => $lname,
+            'first_name' => $fname,
+            'last_name' => $lname,
             'mail' => $mail,
             'password' => $hash_password
         ]);
@@ -38,17 +38,23 @@ class Users
 
     public static function findById(int $id)
     {
-        return Connection::getInstance()->pdo->query("SELECT * FROM users WHERE user_id = $id")->fetchAll()[0];
+        $pdo = Connection::getInstance()->pdo;
+        $stm = $pdo->prepare('SELECT * FROM users WHERE user_id = ?');
+        $stm->bindParam(1, $id, \PDO::PARAM_INT);
+        $stm->execute();
+        $user = $stm->fetchAll();
+        if (empty($user)) {
+            return null;
+        } else {
+            return $user[0];
+        }
     }
 
     public static function findByMail($mail)
     {
         // TODO: add 'OR username=:username'
         $pdo = Connection::getInstance()->pdo;
-        // $user = Connection::getInstance()->pdo->query("SELECT * FROM users WHERE mail = $mail")->fetchAll();
         $stm = $pdo->prepare('SELECT * FROM users WHERE mail = ?');
-        // $stm->bindParam(1, $limit_from, PDO::PARAM_INT);
-        // $stm->bindParam(2, $per_page, PDO::PARAM_INT);
         $stm->bindParam(1, $mail, \PDO::PARAM_STR);
         $stm->execute();
         $user = $stm->fetchAll();
